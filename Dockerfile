@@ -1,18 +1,14 @@
-# FROM openjdk:8-alpine
-# FROM maven:3.8.6 AS build
-# A tester ??
-# FROM maven:3.8.6-jdk-8-slim AS build 
-# maven withJDK
-FROM maven:3.8.6 AS build
-# maven without JDK
-RUN mkdir -p /workspace
-WORKDIR /workspace
-COPY pom.xml /workspace
-COPY src /workspace/src
+# Method 1 
+# Dcker build 
+FROM maven:3.8.6-amazoncorretto-11  AS build
+RUN mkdir -p /springServiceTmp
+WORKDIR /springServiceTmp
+COPY pom.xml /springServiceTmp
+COPY src /springServiceTmp/src
 # RUN mvn -f pom.xml clean package
 RUN mvn -f pom.xml clean package -DskipTests
 
-FROM openjdk:8-alpine
-COPY --from=build /workspace/target/*.jar SpringAuth.jar
+FROM amazoncorretto:11-alpine-jdk
+COPY --from=build /springServiceTmp/target/*.jar SpringService.jar
 EXPOSE 8091
-ENTRYPOINT ["java","-jar","SpringAuth.jar"]
+ENTRYPOINT ["java","-jar","SpringService.jar"]

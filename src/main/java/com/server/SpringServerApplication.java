@@ -15,7 +15,7 @@ public class SpringServerApplication {
 
 	@GetMapping(value="test")
 	public String tast() {
-		return "TEST";
+		return "TEST Oracle cloud ...!";
 	}
 	
 

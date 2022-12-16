@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: heli-app
+  name: spring-app
 spec:
   selector:
     matchLabels:
@@ -14,19 +14,19 @@ spec:
     spec:
       containers:
       - name: app
-        image: yul.ocir.io/ax7qiwwaer3v/fullstack:1
+        image: yul.ocir.io/ax7qiwwaer3v/spring-apps/spring-server:1
         imagePullPolicy: Always
         ports:
         - name: app
-          containerPort: 8080
+          containerPort: 8091
           protocol: TCP
       imagePullSecrets:
-        - name: ocirsecret
+        - name: ocispring
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: heli-app-lb
+  name: spring-app-lb
   labels:
     app: app
   annotations:
@@ -36,6 +36,6 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 8080
+  - port: 8091
   selector:
     app: app

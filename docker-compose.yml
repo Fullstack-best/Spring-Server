@@ -5,8 +5,10 @@ version: '3'
 services:
 
   spring-service:
+    platform: linux/x86_64
     # platform: linux/amd64
     build: ./spring-service
+    # platform: linux/amd64
     ports:
       - "8091:8091"
     restart: on-failure

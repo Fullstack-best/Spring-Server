@@ -13,6 +13,7 @@
 # EXPOSE 8091
 # ENTRYPOINT ["java","-jar","SpringService.jar"]
 
+# FROM amazoncorretto:11-alpine-jdk
 FROM amazoncorretto:11-alpine-jdk
 COPY /target/*.jar SpringService.jar
 EXPOSE 8091

@@ -1,0 +1,12 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+version: '3'
+
+#Define services
+services:
+
+  admin-service:
+    build: ./spring-service
+    ports:
+      - "8091:8091"
+    restart: on-failure
+

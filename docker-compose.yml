@@ -4,7 +4,7 @@ version: '3'
 #Define services
 services:
 
-  admin-service:
+  spring-service:
     build: ./spring-service
     ports:
       - "8091:8091"
